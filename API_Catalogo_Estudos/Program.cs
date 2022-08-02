@@ -1,6 +1,13 @@
+using API_Catalogo_Estudos.Context;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+string mySqlConnection = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<AppDbContext>(options =>
+            options.UseSqlServer(mySqlConnection,
+             b => b.MigrationsAssembly(typeof(AppDbContext).Assembly.FullName)));
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
