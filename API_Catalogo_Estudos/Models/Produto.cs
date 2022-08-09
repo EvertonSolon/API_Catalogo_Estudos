@@ -1,14 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace API_Catalogo_Estudos.Models;
 
 public class Produto
 {
-    public Produto()
-    {
-        Categoria = new Categoria();
-    }
 
     [Key]
     public int Id { get; set; }
@@ -32,5 +29,7 @@ public class Produto
     public DateTime DataCadastro { get; set; }
 
     public int CategoriaId { get; set; }
+
+    [JsonIgnore]
     public Categoria? Categoria { get; set; }  
 }
