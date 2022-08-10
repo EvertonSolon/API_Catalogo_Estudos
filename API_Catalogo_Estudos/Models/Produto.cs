@@ -30,6 +30,6 @@ public class Produto
 
     public int CategoriaId { get; set; }
 
-    [JsonIgnore]
+    //[JsonIgnore]
     public Categoria? Categoria { get; set; }  
 }

@@ -9,7 +9,11 @@ builder.Services.AddDbContext<AppDbContext>(options =>
             options.UseSqlServer(mySqlConnection,
              b => b.MigrationsAssembly(typeof(AppDbContext).Assembly.FullName)));
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
+    });
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
